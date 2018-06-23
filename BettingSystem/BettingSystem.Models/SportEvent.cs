@@ -23,5 +23,8 @@ namespace BettingSystem.Models
         
         [Required]
         public ICollection<SportEventMarket> Markets { get; set; }
+
+        [Required]
+        public ICollection<Bet> Bets { get; set; } 
     }
 }

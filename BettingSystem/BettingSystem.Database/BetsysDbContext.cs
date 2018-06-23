@@ -6,6 +6,12 @@ namespace BettingSystem.Database
 {
     public class BetsysDbContext : IdentityDbContext<User>
     {
+        public BetsysDbContext(DbContextOptions<BetsysDbContext> options)
+            :base(options)
+        {
+            
+        }
+
         public DbSet<SportEvent> SportEvents { get; set; }
 
         public DbSet<SportEventMarket> Markets { get; set; }
