@@ -1,27 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Xmls\FootbalEvent1.xml" />
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="Xmls\FootbalEvent1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0-preview-20180610-02" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\BettingSystem.Imports\BettingSystem.Imports.csproj" />
     <ProjectReference Include="..\BettingSystem.Models\BettingSystem.Models.csproj" />
   </ItemGroup>
-
 </Project>
