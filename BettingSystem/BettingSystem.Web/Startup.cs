@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BettingSystem.Database;
+﻿using BettingSystem.Database;
+using BettingSystem.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace BettingSystem.Web
 {
@@ -30,11 +23,12 @@ namespace BettingSystem.Web
             services.AddMvc();
             services.AddDbContext<BetsysDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), config =>
-                {
-                    config.MigrationsAssembly("BettingSystem.Web");
-                });
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                    config => { config.MigrationsAssembly("BettingSystem.Web"); });
             });
+
+            services.AddScoped<IBettingService, BettingService>();
+            services.AddScoped<IEventService, EventService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

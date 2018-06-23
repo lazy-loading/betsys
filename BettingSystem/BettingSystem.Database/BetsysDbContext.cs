@@ -7,9 +7,8 @@ namespace BettingSystem.Database
     public class BetsysDbContext : IdentityDbContext<User>
     {
         public BetsysDbContext(DbContextOptions<BetsysDbContext> options)
-            :base(options)
+            : base(options)
         {
-            
         }
 
         public DbSet<SportEvent> SportEvents { get; set; }
@@ -24,10 +23,7 @@ namespace BettingSystem.Database
 
             builder.Entity<User>().ToTable("Users");
 
-            builder.Entity<SportEventMarket>(entity =>
-            {
-                entity.HasIndex(x => x.Number).IsUnique();
-            });
+            builder.Entity<SportEventMarket>(entity => { entity.HasIndex(x => x.Number).IsUnique(); });
 
             builder.Entity<SportEventSelection>(entity => { entity.HasIndex(x => x.Number).IsUnique(); });
         }
