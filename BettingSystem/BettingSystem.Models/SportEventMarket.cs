@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BettingSystem.Models
@@ -25,5 +26,6 @@ namespace BettingSystem.Models
 
         [Required]
         public ICollection<SportEventSelection> Selections { get; set; }
+
     }
 }

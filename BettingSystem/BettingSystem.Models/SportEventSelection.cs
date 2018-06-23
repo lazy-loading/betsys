@@ -17,8 +17,7 @@ namespace BettingSystem.Models
         [Required]
         public decimal Odds { get; set; }
 
-        [Required]
-        public SelectionParticipantType Participant { get; set; }
+        public SelectionParticipantType? Participant { get; set; }
 
         [Required]
         public int MarketId { get; set; }
@@ -27,7 +26,10 @@ namespace BettingSystem.Models
 
         [Required]
         public SportEventMarket Market { get; set; }
-        
+
         #endregion
+
+        public override string ToString() =>
+            $"{Id}, {Number}, {Description}, {Odds}, {Participant}";
     }
 }
