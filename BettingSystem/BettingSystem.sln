@@ -1,12 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingSystem.Web", "BettingSystem.Web\BettingSystem.Web.csproj", "{65A000C8-FA2C-4688-9CF8-B15CB3D496FE}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BettingSystem.Web", "BettingSystem.Web\BettingSystem.Web.csproj", "{65A000C8-FA2C-4688-9CF8-B15CB3D496FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingSystem.Models", "BettingSystem.Models\BettingSystem.Models.csproj", "{1518C4AD-5D09-4060-9FE6-373446C1C0BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BettingSystem.Models", "BettingSystem.Models\BettingSystem.Models.csproj", "{1518C4AD-5D09-4060-9FE6-373446C1C0BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingSystem.Database", "BettingSystem.Database\BettingSystem.Database.csproj", "{9A84752E-26F2-489A-81DE-7D83FD80FCA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BettingSystem.Database", "BettingSystem.Database\BettingSystem.Database.csproj", "{9A84752E-26F2-489A-81DE-7D83FD80FCA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingSystem.Imports", "BettingSystem.Imports\BettingSystem.Imports.csproj", "{B9E632F2-8F0A-44EE-9BE9-931FAC44E578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BettingSystem.Imports", "BettingSystem.Imports\BettingSystem.Imports.csproj", "{B9E632F2-8F0A-44EE-9BE9-931FAC44E578}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A22A8845-8F53-4778-8A32-760888747B18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingSystem.ImportsTests", "BettingSystem.ImportsTests\BettingSystem.ImportsTests.csproj", "{42DA5777-E43E-43A8-A566-EF6BCF7D1BD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +37,18 @@ Global
 		{B9E632F2-8F0A-44EE-9BE9-931FAC44E578}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9E632F2-8F0A-44EE-9BE9-931FAC44E578}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9E632F2-8F0A-44EE-9BE9-931FAC44E578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42DA5777-E43E-43A8-A566-EF6BCF7D1BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42DA5777-E43E-43A8-A566-EF6BCF7D1BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42DA5777-E43E-43A8-A566-EF6BCF7D1BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42DA5777-E43E-43A8-A566-EF6BCF7D1BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{42DA5777-E43E-43A8-A566-EF6BCF7D1BD4} = {A22A8845-8F53-4778-8A32-760888747B18}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EFC33952-73A3-4FE6-81AB-441EB42FE5DE}
 	EndGlobalSection
 EndGlobal
