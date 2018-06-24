@@ -75,5 +75,8 @@ namespace BettingSystem.Models
         {
             return !Equals(left, right);
         }
+        
+        public override string ToString() =>
+            $"{Id}, {Number}, {Description}, {Odds}, {Participant}";
     }
 }

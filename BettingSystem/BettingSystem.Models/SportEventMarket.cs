@@ -26,6 +26,9 @@ namespace BettingSystem.Models
         [Required]
         public IList<SportEventSelection> Selections { get; set; }
 
+        public override string ToString() =>
+            $"{Id}, {Number}, {Name}, {IsClosed}, {Selections.Count}";
+        
         protected bool Equals(SportEventMarket other)
         {
             return Id == other.Id &&
