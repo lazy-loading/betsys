@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
 using BettingSystem.Database;
 using BettingSystem.Models;
 using Microsoft.EntityFrameworkCore;
-using Remotion.Linq.Clauses;
 
 namespace BettingSystem.Services
 {
