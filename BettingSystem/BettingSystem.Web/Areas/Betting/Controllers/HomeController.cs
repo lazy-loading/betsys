@@ -10,5 +10,7 @@ namespace BettingSystem.Web.Areas.Betting.Controllers
         {
             return View();
         }
+
+
     }
 }
