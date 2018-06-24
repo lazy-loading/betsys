@@ -1,3 +1,7 @@
 .font-small {
     font-size: small;
 }
+
+.data-summary-valid {
+    display: none;
+}

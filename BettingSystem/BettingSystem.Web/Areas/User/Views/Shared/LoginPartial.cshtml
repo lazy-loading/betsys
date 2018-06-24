@@ -1,6 +1,9 @@
-﻿@model BettingSystem.Web.Areas.User.Models.UserLoginViewModel
+﻿@model UserLoginViewModel
 
 <form asp-action="Login" asp-controller="Auth" method="post">
+    
+    <div asp-validation-summary="ModelOnly" class="bg-danger"></div>
+    
     <div class="form-group">
         <label asp-for="EmailAddress"></label>
         <input asp-for="EmailAddress" class="form-control"/>
