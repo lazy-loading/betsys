@@ -36,17 +36,24 @@ namespace BettingSystem.Web
                     config => { config.MigrationsAssembly("BettingSystem.Web"); });
             });
 
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<BetsysDbContext>()
-                .AddDefaultTokenProviders();
-
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/User/Auth/Index";
                 options.LogoutPath = "/User/Auth/Logout";
             });
+
             services.AddAuthentication()
                 .AddCookie();
+
+            services.AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 5;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<BetsysDbContext>();
 
             services.AddScoped<IBettingService, BettingService>();
             services.AddScoped<IEventService, EventService>();
