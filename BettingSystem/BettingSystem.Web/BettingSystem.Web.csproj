@@ -3,7 +3,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Models" />
+    <Folder Include="Areas\Betting\Models" />
     <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\lib" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />

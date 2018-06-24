@@ -1,0 +1,11 @@
+{
+  "name": "bettingsystem.web",
+  "version": "0.0.1",
+  "dependencies": {
+    "bower": "*"
+  },
+
+  "scripts": {
+    "build": "bower install"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "BettingSystem",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "*",
+    "jquery": "*",
+    "jquery-validation": "*",
+    "jquery-validation-unobtrusive": "*"
+  }
+}
