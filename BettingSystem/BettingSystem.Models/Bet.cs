@@ -7,23 +7,31 @@ namespace BettingSystem.Models
 {
     public class Bet : IEntity
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
 
-        [Required]
-        public User User { get; set; }
-        
-        [Required]
-        public int UserId { get; set; }
+        [Required] public decimal BetValue { get; set; }
 
-        public ICollection<SportEventSelection> Selections { get; set; }
+        [Required] public string UserId { get; set; }
 
-        [NotMapped]
-        public SportEvent Event => Selections?.FirstOrDefault()?.Market.Event;
+        [Required] public int SelectionId { get; set; }
+
+        #region Navigation properties
+
+        [Required] public User User { get; set; }
+
+        [Required] public SportEventSelection Selection { get; set; }
+
+        #endregion
+
+        #region Equality members
 
         protected bool Equals(Bet other)
         {
-            return Id == other.Id && Equals(User, other.User) && UserId == other.UserId;
+            return Id == other.Id &&
+                   BetValue == other.BetValue &&
+                   string.Equals(UserId,
+                       other.UserId) &&
+                   SelectionId == other.SelectionId;
         }
 
         public override bool Equals(object obj)
@@ -39,20 +47,13 @@ namespace BettingSystem.Models
             unchecked
             {
                 var hashCode = Id;
-                hashCode = (hashCode * 397) ^ (User != null ? User.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ UserId;
+                hashCode = (hashCode * 397) ^ BetValue.GetHashCode();
+                hashCode = (hashCode * 397) ^ (UserId != null ? UserId.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ SelectionId;
                 return hashCode;
             }
         }
 
-        public static bool operator ==(Bet left, Bet right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(Bet left, Bet right)
-        {
-            return !Equals(left, right);
-        }
+        #endregion
     }
 }

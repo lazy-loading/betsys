@@ -6,26 +6,25 @@ namespace BettingSystem.Models
 {
     public class SportEvent : IEntity, IEquatable<SportEvent>
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
 
-        [Required]
-        public string SportType { get; set; }
+        [Required] public string SportType { get; set; }
 
-        [Required]
-        public DateTime EventTime { get; set; }
-        
-        [Required]
-        public string HomePlayer { get; set; }
-        
-        [Required]
-        public string AwayPlayer { get; set; }
-        
-        [Required]
-        public IList<SportEventMarket> Markets { get; set; }
+        [Required] public DateTime EventTime { get; set; }
 
-        [Required]
-        public ICollection<Bet> Bets { get; set; }
+        [Required] public string HomePlayer { get; set; }
+
+        [Required] public string AwayPlayer { get; set; }
+
+        #region Navigation properties
+
+        [Required] public IList<SportEventMarket> Markets { get; set; }
+
+        [Required] public IList<Bet> Bets { get; set; }
+
+        #endregion
+
+        #region Equality members
 
         public bool Equals(SportEvent other)
         {
@@ -69,5 +68,7 @@ namespace BettingSystem.Models
         {
             return !Equals(left, right);
         }
+
+        #endregion
     }
 }

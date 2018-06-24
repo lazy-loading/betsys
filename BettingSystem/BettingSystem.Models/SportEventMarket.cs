@@ -6,30 +6,29 @@ namespace BettingSystem.Models
 {
     public class SportEventMarket : IEntity, IEquatable<SportEventMarket>
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
 
-        [Required]
-        public int Number { get; set; }
+        [Required] public int Number { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        [Required] public string Name { get; set; }
 
-        [Required]
-        public bool IsClosed { get; set; }
+        [Required] public bool IsClosed { get; set; }
 
-        [Required]
-        public SportEvent Event { get; set; }
-        
-        [Required]
-        public int EventId { get; set; }
+        [Required] public int EventId { get; set; }
 
-        [Required]
-        public IList<SportEventSelection> Selections { get; set; }
+        #region Navigation properties
+
+        [Required] public SportEvent Event { get; set; }
+
+        [Required] public IList<SportEventSelection> Selections { get; set; }
+
+        #endregion
 
         public override string ToString() =>
             $"{Id}, {Number}, {Name}, {IsClosed}, {Selections?.Count}";
-        
+
+        #region Equality members
+
         public bool Equals(SportEventMarket other)
         {
             return Id == other.Id &&
@@ -70,5 +69,7 @@ namespace BettingSystem.Models
         {
             return !Equals(left, right);
         }
+
+        #endregion
     }
 }

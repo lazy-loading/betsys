@@ -6,30 +6,25 @@ namespace BettingSystem.Models
 {
     public class SportEventSelection : IEntity, IEquatable<SportEventSelection>
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
 
-        [Required]
-        public int Number { get; set; }
+        [Required] public int Number { get; set; }
 
-        [Required]
-        public string Description { get; set; }
+        [Required] public string Description { get; set; }
 
-        [Required]
-        public decimal Odds { get; set; }
+        [Required] public decimal Odds { get; set; }
 
-        [Required]
-        public SelectionParticipantType Participant { get; set; }
+        [Required] public SelectionParticipantType Participant { get; set; }
 
-        [Required]
-        public int MarketId { get; set; }
-        
+        [Required] public int MarketId { get; set; }
+
         #region Navigation properties
 
-        [Required]
-        public SportEventMarket Market { get; set; }
-        
+        [Required] public SportEventMarket Market { get; set; }
+
         #endregion
+
+        #region Equality members
 
         public bool Equals(SportEventSelection other)
         {
@@ -73,7 +68,9 @@ namespace BettingSystem.Models
         {
             return !Equals(left, right);
         }
-        
+
+        #endregion
+
         public override string ToString() =>
             $"{Id}, {Number}, {Description}, {Odds}, {Participant}";
     }

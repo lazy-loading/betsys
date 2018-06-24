@@ -5,14 +5,15 @@ using System.Text;
 
 namespace BettingSystem.Models
 {
-    public sealed class SportsPlayer : IEntity, IEquatable<SportsPlayer>
+    public sealed class SportPlayer : IEntity, IEquatable<SportPlayer>
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
+        [Key] public int Id { get; set; }
 
-        public bool Equals(SportsPlayer other)
+        [Required] public string Name { get; set; }
+
+        #region Equality members
+
+        public bool Equals(SportPlayer other)
         {
             return Id == other.Id && string.Equals(Name, other.Name);
         }
@@ -21,7 +22,7 @@ namespace BettingSystem.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj is SportsPlayer && Equals((SportsPlayer) obj);
+            return obj is SportPlayer && Equals((SportPlayer) obj);
         }
 
         public override int GetHashCode()
@@ -32,14 +33,16 @@ namespace BettingSystem.Models
             }
         }
 
-        public static bool operator ==(SportsPlayer left, SportsPlayer right)
+        public static bool operator ==(SportPlayer left, SportPlayer right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(SportsPlayer left, SportsPlayer right)
+        public static bool operator !=(SportPlayer left, SportPlayer right)
         {
             return !Equals(left, right);
         }
+
+        #endregion
     }
 }

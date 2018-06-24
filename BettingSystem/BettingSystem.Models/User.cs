@@ -5,6 +5,6 @@ namespace BettingSystem.Models
 {
     public class User : IdentityUser
     {
-        public ICollection<Bet> Bets { get; set; }
+        public IList<Bet> Bets { get; set; }
     }
 }
