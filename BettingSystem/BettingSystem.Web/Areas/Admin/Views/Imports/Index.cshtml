@@ -1,40 +1,23 @@
-﻿
-@{
-    ViewData["Title"] = "Import stuff";
+﻿@{
+    ViewData["Title"] = "Import XML";
 }
-@using BettingSystem.Web.Areas.Admin.Models;
 
-<div>
-    <h2>Import Events</h2>
-    <form method="post" enctype="multipart/form-data" asp-controller="Imports" asp-action="ImportUpcomingEvents">
-        <div class="form-group">
-            <div class="col-md-10">
-                <p>Upload one or more files using this form:</p>
-                <input type="file" name="@nameof(UpcomingEventsImportViewModel.XmlFile)" multiple />
+<div class="row">
+    <div class="col">
+        <div class="card mt-3">
+            <div class="card-header">Import Upcoming</div>
+            <div class="card-body">
+                @Html.Partial("ImportUpcomingPartial")
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <button type="submit">Import</button>
+    </div>
+    <div class="col">
+        <div class="card mt-3">
+            <div class="card-header">Import Update</div>
+            <div class="card-body">
+                @Html.Partial("ImportUpdatePartial")
             </div>
         </div>
-    </form>
-
-    <h2>Update Events</h2>
-    <form method="post" enctype="multipart/form-data" asp-controller="Imports" asp-action="ImportUpdateEvents">
-        <div class="form-group">
-            <div class="col-md-10">
-                <p>Upload one or more files using this form:</p>
-                <input type="file" name="@nameof(UpdateEventsImportViewModel.XmlFile)" multiple />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <button type="submit">Update</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
-
-<h2>Index</h2>
-
+<a asp-href="Index">Back to Index</a>

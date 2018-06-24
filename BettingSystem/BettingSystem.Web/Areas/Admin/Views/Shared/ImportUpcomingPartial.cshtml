@@ -1,0 +1,13 @@
+<form method="post" enctype="multipart/form-data" asp-controller="Imports" asp-action="ImportUpcomingEvents">
+    <div class="form-group">
+        <div class="col-12">
+            <p>Upload one or more files using this form:</p>
+            <input type="file" name="@nameof(UpcomingEventsImportViewModel.XmlFile)" class="form-control-file" multiple/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Import</button>
+        </div>
+    </div>
+</form>

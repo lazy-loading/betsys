@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using BettingSystem.Imports;
 using BettingSystem.Models;
 using BettingSystem.Services;
@@ -12,21 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BettingSystem.Web.Areas.Admin.Controllers
 {
-    [Area(nameof(BettingSystem.Web.Areas.Admin))]
+    [Area(nameof(Admin))]
     [AllowAnonymous]
     public class ImportsController : Controller
     {
-        readonly IEventService mEventService;
+        readonly IEventService _mEventService;
 
         public ImportsController(IEventService eventService)
         {
-            mEventService = eventService;
+            _mEventService = eventService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
         public IActionResult ImportUpcomingEvents(UpcomingEventsImportViewModel vm)
         {
@@ -34,7 +28,7 @@ namespace BettingSystem.Web.Areas.Admin.Controllers
             {
                 string xml = textReader.ReadToEnd();
                 IEnumerable<SportEvent> events = XmlConverter.FromXml(xml);
-                mEventService.Create(events);
+                _mEventService.Create(events);
             }
 
             return RedirectToAction(nameof(Index));
@@ -46,7 +40,7 @@ namespace BettingSystem.Web.Areas.Admin.Controllers
             {
                 string xml = textReader.ReadToEnd();
                 IEnumerable<SportEvent> events = XmlConverter.FromXml(xml);
-                mEventService.Update(events);
+                _mEventService.Update(events);
             }
 
             return RedirectToAction(nameof(Index));
