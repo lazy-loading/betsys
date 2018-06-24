@@ -6,6 +6,6 @@ namespace BettingSystem.Web.Controllers
     public class HomeController : Controller
     {
         [AllowAnonymous]
-        public IActionResult Index() => RedirectToAction("Index", "Home", routeValues: new {area = "Betting"});
+        public IActionResult Index() => RedirectToAction("Index", "Home", new {area = "Betting"});
     }
 }
