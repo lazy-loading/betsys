@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BettingSystem.Models
 {
-    public class SportEventSelection : IEntity
+    public class SportEventSelection : IEntity, IEquatable<SportEventSelection>
     {
         [Key]
         public int Id { get; set; }
@@ -30,7 +31,7 @@ namespace BettingSystem.Models
         
         #endregion
 
-        protected bool Equals(SportEventSelection other)
+        public bool Equals(SportEventSelection other)
         {
             return Id == other.Id &&
                    Number == other.Number &&
@@ -38,9 +39,7 @@ namespace BettingSystem.Models
                        other.Description) &&
                    Odds == other.Odds &&
                    Participant == other.Participant &&
-                   MarketId == other.MarketId &&
-                   Equals(Market,
-                       other.Market);
+                   MarketId == other.MarketId;
         }
 
         public override bool Equals(object obj)
@@ -61,7 +60,6 @@ namespace BettingSystem.Models
                 hashCode = (hashCode * 397) ^ Odds.GetHashCode();
                 hashCode = (hashCode * 397) ^ (int) Participant;
                 hashCode = (hashCode * 397) ^ MarketId;
-                hashCode = (hashCode * 397) ^ (Market != null ? Market.GetHashCode() : 0);
                 return hashCode;
             }
         }

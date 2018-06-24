@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BettingSystem.Models
 {
-    public class SportEvent : IEntity
+    public class SportEvent : IEntity, IEquatable<SportEvent>
     {
         [Key]
         public int Id { get; set; }
@@ -27,7 +27,7 @@ namespace BettingSystem.Models
         [Required]
         public ICollection<Bet> Bets { get; set; }
 
-        protected bool Equals(SportEvent other)
+        public bool Equals(SportEvent other)
         {
             return Id == other.Id &&
                    string.Equals(SportType,

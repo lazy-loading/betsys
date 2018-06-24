@@ -5,14 +5,14 @@ using System.Text;
 
 namespace BettingSystem.Models
 {
-    public sealed class SportsPlayer : IEntity
+    public sealed class SportsPlayer : IEntity, IEquatable<SportsPlayer>
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
 
-        private bool Equals(SportsPlayer other)
+        public bool Equals(SportsPlayer other)
         {
             return Id == other.Id && string.Equals(Name, other.Name);
         }

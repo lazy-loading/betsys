@@ -1,4 +1,6 @@
-﻿namespace BettingSystem.Models
+﻿using System;
+
+namespace BettingSystem.Models
 {
     public interface IEntity
     {

@@ -20,7 +20,7 @@ namespace BettingSystem.Imports
             {
                 return ParseXmlEnumerable(xml);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new XmlParseException();
             }
@@ -76,7 +76,7 @@ namespace BettingSystem.Imports
                 Id = int.Parse(selectionImport.Attribute("ID").Value),
                 Number = int.Parse(selectionImport.Attribute("Number").Value),
                 Odds = decimal.Parse(selectionImport.Attribute("OddsDecimal").Value),
-                Participant = GetParticipantTypeByName(selectionImport.Attribute("Participant")?.Value),
+                Participant = GetParticipantTypeByName(selectionImport.Attribute("Participant")?.Value).Value,
                 Description = selectionImport.Attribute("Description")?.Value
             };
 

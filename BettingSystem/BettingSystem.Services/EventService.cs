@@ -27,11 +27,7 @@ namespace BettingSystem.Services
 
         public void Update(IEnumerable<SportEvent> events)
         {
-            foreach (var e in events)
-            {
-                Update(e);
-            }
-
+            events.ForEach(Update);
             _context.SaveChanges();
         }
 
@@ -42,12 +38,6 @@ namespace BettingSystem.Services
             {
                 AddUpdateOrDeleteChildren(market, x => x.Selections);
             }
-
-//            _context.Attach(sportEvent);
-        }
-
-        private void Gosho()
-        {
         }
 
         private void AddUpdateOrDeleteChildren<TParent, TChild>(TParent parent,
@@ -75,8 +65,10 @@ namespace BettingSystem.Services
 
             var removedChildren = originalChildren.ExceptSelect(currentChildren, x => x.Id).ToList();
             var addedChildren = currentChildren.ExceptSelect(originalChildren, x => x.Id).ToList();
-            var modifiedChildren = currentChildren.Except(addedChildren).ExceptSelect(originalChildren, x => x)
-                .Where(x => !originalChildren.Contains(x)).ToList();
+            var modifiedChildren = currentChildren
+                .ExceptSelect(addedChildren, x => x)
+                .ExceptSelect(originalChildren, x => x)
+                .ToList();
 
             originalChildren.AddRange(addedChildren);
             originalChildren.RemoveRange(removedChildren);
