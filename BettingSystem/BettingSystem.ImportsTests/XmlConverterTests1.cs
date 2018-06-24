@@ -4,12 +4,30 @@ using System;
 using System.Xml.Linq;
 using BettingSystem.Imports;
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BettingSystem.ImportsTests
 {
     [TestFixture]
     public class XmlConverterTests1
     {
+        [Test]
+        public void TestParseUpcomingEventSet_CorrectCount()
+        {
+            SportEvent[] items = XmlConverter.FromXml(File.ReadAllText(@"Xmls/UpcomingEvents.xml")).ToArray();
+            Assert.AreEqual(2, items.Length);
+            ;
+        }
+
+        [Test]
+        public void TestParseUpdateEventSet_CorrectCount()
+        {
+            SportEvent[] items = XmlConverter.FromXml(File.ReadAllText(@"Xmls/UpdateEvents.xml")).ToArray();
+            Assert.AreEqual(1, items.Length);
+            ;
+        }
+
         [Test]
         [TestCaseSource(nameof(ParseSportEventImportTestCases))]
         public void TestParseSportEventImport((string Xml, SportEvent Expected) testCase)
@@ -20,7 +38,7 @@ namespace BettingSystem.ImportsTests
             Assert.IsTrue(Comparisons.CompareEvents(testCase.Expected, actualElement));
         }
 
-        public static (string Xml, SportEvent Expected)[] ParseSportEventImportTestCases { get; } = new[] {
+        public static (string Xml, SportEvent Expected)[] ParseSportEventImportTestCases => new[] {
             (
                 File.ReadAllText(@"Xmls/FootbalEvent1.xml"),
                 new SportEvent {
@@ -77,6 +95,25 @@ namespace BettingSystem.ImportsTests
                     }
                 }
             ),
+            (
+                File.ReadAllText(@"Xmls/FootbalEvent2.xml"),
+                new SportEvent {
+                    Id = 5097152,
+                    SportType="Football",
+                    EventTime = DateTime.Parse(@"2018-11-13T19:00:00"),
+                    HomePlayer = "Bulgaria",
+                    AwayPlayer = "Germany",
+                    Markets = new[] {
+                        new SportEventMarket {
+                            Id=25179248,
+                            Number=3,
+                            Name="Total Goals",
+                            IsClosed=true,
+                            Selections=new SportEventSelection[]{}
+                        }
+                    }
+                }
+            )
         };
     }
 }

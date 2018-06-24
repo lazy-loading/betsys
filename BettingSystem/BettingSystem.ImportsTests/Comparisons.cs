@@ -30,7 +30,8 @@ namespace BettingSystem.ImportsTests
             return
                 x.Name == y.Name &&
                 x.Number == y.Number &&
-                CompareSelections(x.Selections, y.Selections);
+                CompareSelections(x.Selections, y.Selections)&&
+                x.IsClosed == y.IsClosed;
         }
 
         private static bool CompareSelections(IEnumerable<SportEventSelection> x, IEnumerable<SportEventSelection> y)

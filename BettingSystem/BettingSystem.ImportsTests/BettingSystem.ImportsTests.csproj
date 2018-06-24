@@ -7,9 +7,21 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Xmls\FootbalEvent1.xml" />
+    <None Remove="Xmls\FootbalEvent2.xml" />
+    <None Remove="Xmls\UpcomingEvents.xml" />
+    <None Remove="Xmls\UpdateEvents.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Xmls\FootbalEvent1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xmls\FootbalEvent2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xmls\UpcomingEvents.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xmls\UpdateEvents.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

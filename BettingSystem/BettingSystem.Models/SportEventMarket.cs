@@ -27,5 +27,7 @@ namespace BettingSystem.Models
         [Required]
         public ICollection<SportEventSelection> Selections { get; set; }
 
+        public override string ToString() =>
+            $"{Id}, {Number}, {Name}, {IsClosed}, {Selections.Count}";
     }
 }

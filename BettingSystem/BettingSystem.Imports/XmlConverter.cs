@@ -43,7 +43,7 @@ namespace BettingSystem.Imports
                 EventTime = DateTime.Parse(sportEventImport.Attribute("EventTime").Value),
                 HomePlayer = sportEventImport.Attribute("Home").Value,
                 AwayPlayer = sportEventImport.Attribute("Away").Value,
-                Markets = sportEventImport.Elements().Where(x => x.Name == "Market").Select(ParseMarketImport).ToArray()
+                Markets = sportEventImport.Elements().Where(x => x.Name == "Market").Select(ParseMarket).ToArray()
             };
 
             return sportEvent;
@@ -55,7 +55,7 @@ namespace BettingSystem.Imports
             return text.Substring(0, text.Length - suffix.Length);
         }
 
-        private static SportEventMarket ParseMarketImport(XElement marketImport)
+        private static SportEventMarket ParseMarket(XElement marketImport)
         {
             if (marketImport == null)
                 throw new ArgumentNullException(nameof(marketImport));
@@ -64,7 +64,8 @@ namespace BettingSystem.Imports
                 Id = int.Parse(marketImport.Attribute("ID").Value),
                 Number = int.Parse(marketImport.Attribute("Number").Value),
                 Name = marketImport.Attribute("Name").Value,
-                Selections = marketImport.Elements().Where(x=>x.Name == "Selection").Select(ParseSelection).ToArray()
+                Selections = marketImport.Elements().Where(x => x.Name == "Selection").Select(ParseSelection).ToArray(),
+                IsClosed = marketImport.Attribute("Status")?.Value == "Close"
             };
             return market;
         }
@@ -76,7 +77,7 @@ namespace BettingSystem.Imports
                 Number = int.Parse(selectionImport.Attribute("Number").Value),
                 Odds = decimal.Parse(selectionImport.Attribute("OddsDecimal").Value),
                 Participant = GetParticipantTypeByName(selectionImport.Attribute("Participant")?.Value),
-                Description= selectionImport.Attribute("Description")?.Value
+                Description = selectionImport.Attribute("Description")?.Value
             };
 
             return selection;
