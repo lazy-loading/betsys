@@ -11,5 +11,6 @@ namespace BettingSystem.Web.Areas.Betting.Models
         public string Name => $"{HomePlayer} vs {AwayPlayer}";
         public string HomePlayer { get; set; }
         public string AwayPlayer { get; set; }
+        public string SportType { get; set; }
     }
 }
