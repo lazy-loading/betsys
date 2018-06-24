@@ -36,10 +36,6 @@ namespace BettingSystem.Web
                     config => { config.MigrationsAssembly("BettingSystem.Web"); });
             });
 
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<BetsysDbContext>()
-                .AddDefaultTokenProviders();
-
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/User/Auth/Index";
@@ -47,6 +43,9 @@ namespace BettingSystem.Web
             });
             services.AddAuthentication()
                 .AddCookie();
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<BetsysDbContext>();
 
             services.AddScoped<IBettingService, BettingService>();
             services.AddScoped<IEventService, EventService>();

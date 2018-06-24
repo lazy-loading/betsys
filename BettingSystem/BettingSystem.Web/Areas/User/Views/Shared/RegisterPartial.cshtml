@@ -1,6 +1,6 @@
 ﻿@model BettingSystem.Web.Areas.User.Models.UserRegistrationViewModel
 
-<form asp-action="Register" method="post">
+<form asp-controller="Auth" asp-action="Register" asp-area="User" method="post">
     <div class="form-group">
         <label asp-for="EmailAddress"></label>
         <input asp-for="EmailAddress" class="form-control"/>
