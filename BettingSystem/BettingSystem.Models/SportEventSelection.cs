@@ -14,7 +14,7 @@ namespace BettingSystem.Models
 
         [Required] public decimal Odds { get; set; }
 
-        [Required] public SelectionParticipantType Participant { get; set; }
+        [Required] public SelectionParticipantType? Participant { get; set; }
 
         [Required] public int MarketId { get; set; }
 

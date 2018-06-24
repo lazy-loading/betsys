@@ -8,13 +8,19 @@ namespace BettingSystem.Imports
 {
     public static class XmlConverter
     {
+        private static readonly IReadOnlyDictionary<string, SelectionParticipantType> ParticipantTypesByName = new Dictionary<string, SelectionParticipantType> {
+            {"AWAY" , SelectionParticipantType.Away},
+            {"DRAW", SelectionParticipantType.Draw },
+            {"HOME", SelectionParticipantType.Home }
+        };
+
         public static IEnumerable<SportEvent> FromXml(string xml)
         {
             try
             {
                 return ParseXmlEnumerable(xml);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new XmlParseException();
             }
@@ -31,8 +37,7 @@ namespace BettingSystem.Imports
 
         public static SportEvent ParseSportEventImport(XElement sportEventImport)
         {
-            var sportEvent = new SportEvent
-            {
+            var sportEvent = new SportEvent {
                 Id = int.Parse(sportEventImport.Attribute("ID").Value),
                 SportType = TrimSuffix(sportEventImport.Name.ToString(), "Event"),
                 EventTime = DateTime.Parse(sportEventImport.Attribute("EventTime").Value),
@@ -55,8 +60,7 @@ namespace BettingSystem.Imports
             if (marketImport == null)
                 throw new ArgumentNullException(nameof(marketImport));
 
-            var market = new SportEventMarket
-            {
+            var market = new SportEventMarket {
                 Id = int.Parse(marketImport.Attribute("ID").Value),
                 Number = int.Parse(marketImport.Attribute("Number").Value),
                 Name = marketImport.Attribute("Name").Value,
@@ -68,8 +72,7 @@ namespace BettingSystem.Imports
 
         private static SportEventSelection ParseSelection(XElement selectionImport)
         {
-            var selection = new SportEventSelection
-            {
+            var selection = new SportEventSelection {
                 Id = int.Parse(selectionImport.Attribute("ID").Value),
                 Number = int.Parse(selectionImport.Attribute("Number").Value),
                 Odds = decimal.Parse(selectionImport.Attribute("OddsDecimal").Value),
@@ -80,14 +83,10 @@ namespace BettingSystem.Imports
             return selection;
         }
 
-        private static SelectionParticipantType GetParticipantTypeByName(string typeString)
+        private static SelectionParticipantType? GetParticipantTypeByName(string name)
         {
-            if (String.IsNullOrEmpty(typeString))
-                throw new ArgumentNullException(nameof(typeString));
-
-            bool isSuccess = Enum.TryParse(typeString, true, out SelectionParticipantType participantType);
-
-            return isSuccess ? participantType : throw new XmlParseException("Unable to parse participant.");
+            if (name == null) return null;
+            else return XmlConverter.ParticipantTypesByName[name];
         }
     }
 }
