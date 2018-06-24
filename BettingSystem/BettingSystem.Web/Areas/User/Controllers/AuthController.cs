@@ -38,7 +38,7 @@ namespace BettingSystem.Web.Areas.User.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home", new {area = ""});
             }
 
-            return View(nameof(HomeController.Index), "Home", new {area = ""});
+            return BadRequest();
         }
 
         [HttpPost]
