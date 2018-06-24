@@ -41,10 +41,18 @@ namespace BettingSystem.Web
                 options.LoginPath = "/User/Auth/Index";
                 options.LogoutPath = "/User/Auth/Logout";
             });
+
             services.AddAuthentication()
                 .AddCookie();
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 5;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
                 .AddEntityFrameworkStores<BetsysDbContext>();
 
             services.AddScoped<IBettingService, BettingService>();
@@ -77,8 +85,8 @@ namespace BettingSystem.Web
             app.UseHttpsRedirection();
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(name: "areas", template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

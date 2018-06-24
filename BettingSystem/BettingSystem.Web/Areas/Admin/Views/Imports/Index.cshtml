@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Import XML";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card mt-3">
+            <div class="card-header">Import Upcoming</div>
+            <div class="card-body">
+                @Html.Partial("ImportUpcomingPartial")
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card mt-3">
+            <div class="card-header">Import Update</div>
+            <div class="card-body">
+                @Html.Partial("ImportUpdatePartial")
+            </div>
+        </div>
+    </div>
+</div>
+<a asp-href="Index">Back to Index</a>

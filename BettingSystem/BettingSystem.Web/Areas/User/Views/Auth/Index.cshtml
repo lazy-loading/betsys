@@ -1,15 +1,21 @@
-﻿<div class="row">
+﻿@{
+    ViewData["Title"] = "Login";
+}
+<div class="row">
     <div class="col">
         <div class="card mt-3">
             <div class="card-header">Login</div>
-            @Html.Partial("LoginPartial")
+            <div class="card-body">
+                @Html.Partial("LoginPartial")
+            </div>
         </div>
     </div>
     <div class="col">
         <div class="card mt-3">
             <div class="card-header">Register</div>
-            @Html.Partial("RegisterPartial")
-        </div>         
-
+            <div class="card-body">
+                @Html.Partial("RegisterPartial")
+            </div>
+        </div>
     </div>
 </div>

@@ -3,7 +3,6 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models" />
     <Folder Include="Areas\Betting\Models" />
     <Folder Include="wwwroot\lib" />
   </ItemGroup>
@@ -12,8 +11,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BettingSystem.Imports\BettingSystem.Imports.csproj" />
     <ProjectReference Include="..\BettingSystem.Services\BettingSystem.Services.csproj" />
   </ItemGroup>
 </Project>

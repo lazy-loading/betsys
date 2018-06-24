@@ -25,40 +25,53 @@ namespace BettingSystem.Web.Areas.User.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Login()
+        public async Task<IActionResult> Login([FromForm] UserLoginViewModel model)
         {
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(model.EmailAddress, model.Password, false, false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home", new {area = ""});
+            }
+
+            return View(nameof(HomeController.Index), "Home", new {area = ""});
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(UserRegistrationViewModel model)
+        public async Task<IActionResult> Register([FromForm] UserRegistrationViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                var modelWithErrors
-                    = new IndexViewModel {RegisterViewModel = model};
-                return View("Index", modelWithErrors);
+                return BadRequest();
             }
 
             var user = new BettingSystem.Models.User
             {
                 Email = model.EmailAddress,
+                UserName = model.EmailAddress
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
+
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
             }
 
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(HomeController.Index), "Home", new {area = ""});
         }
 
-        [HttpPost]
-        public IActionResult Logout()
+        [HttpGet]
+        public async Task<IActionResult> Logout()
         {
-            return Ok();
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction(nameof(HomeController.Index), "Home", new {area = ""});
         }
     }
 }
