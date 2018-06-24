@@ -1,36 +1,32 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BettingSystem.Models
 {
-    public class SportEventSelection : IEntity
+    public class SportEventSelection : IEntity, IEquatable<SportEventSelection>
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
 
-        [Required]
-        public int Number { get; set; }
+        [Required] public int Number { get; set; }
 
-        [Required]
-        public string Description { get; set; }
+        [Required] public string Description { get; set; }
 
-        [Required]
-        public decimal Odds { get; set; }
+        [Required] public decimal Odds { get; set; }
 
-        [Required]
-        public SelectionParticipantType Participant { get; set; }
+        [Required] public SelectionParticipantType? Participant { get; set; }
 
-        [Required]
-        public int MarketId { get; set; }
-        
+        [Required] public int MarketId { get; set; }
+
         #region Navigation properties
 
-        [Required]
-        public SportEventMarket Market { get; set; }
-        
+        [Required] public SportEventMarket Market { get; set; }
+
         #endregion
 
-        protected bool Equals(SportEventSelection other)
+        #region Equality members
+
+        public bool Equals(SportEventSelection other)
         {
             return Id == other.Id &&
                    Number == other.Number &&
@@ -38,9 +34,7 @@ namespace BettingSystem.Models
                        other.Description) &&
                    Odds == other.Odds &&
                    Participant == other.Participant &&
-                   MarketId == other.MarketId &&
-                   Equals(Market,
-                       other.Market);
+                   MarketId == other.MarketId;
         }
 
         public override bool Equals(object obj)
@@ -61,7 +55,6 @@ namespace BettingSystem.Models
                 hashCode = (hashCode * 397) ^ Odds.GetHashCode();
                 hashCode = (hashCode * 397) ^ (int) Participant;
                 hashCode = (hashCode * 397) ^ MarketId;
-                hashCode = (hashCode * 397) ^ (Market != null ? Market.GetHashCode() : 0);
                 return hashCode;
             }
         }
@@ -75,7 +68,9 @@ namespace BettingSystem.Models
         {
             return !Equals(left, right);
         }
-        
+
+        #endregion
+
         public override string ToString() =>
             $"{Id}, {Number}, {Description}, {Odds}, {Participant}";
     }

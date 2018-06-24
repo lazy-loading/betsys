@@ -17,6 +17,8 @@ namespace BettingSystem.Database
 
         public DbSet<SportEventSelection> Selections { get; set; }
 
+        public DbSet<Bet> Bets { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -4,14 +4,16 @@ using BettingSystem.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BettingSystem.Web.Migrations
 {
     [DbContext(typeof(BetsysDbContext))]
-    partial class BetsysDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180624072649_UpdatedBets")]
+    partial class UpdatedBets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

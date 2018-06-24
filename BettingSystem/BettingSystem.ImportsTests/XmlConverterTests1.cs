@@ -17,7 +17,6 @@ namespace BettingSystem.ImportsTests
         {
             SportEvent[] items = XmlConverter.FromXml(File.ReadAllText(@"Xmls/UpcomingEvents.xml")).ToArray();
             Assert.AreEqual(2, items.Length);
-            ;
         }
 
         [Test]
@@ -25,7 +24,6 @@ namespace BettingSystem.ImportsTests
         {
             SportEvent[] items = XmlConverter.FromXml(File.ReadAllText(@"Xmls/UpdateEvents.xml")).ToArray();
             Assert.AreEqual(1, items.Length);
-            ;
         }
 
         [Test]

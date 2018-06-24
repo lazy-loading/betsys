@@ -1,43 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BettingSystem.Models
 {
-    public class SportEventMarket : IEntity
+    public class SportEventMarket : IEntity, IEquatable<SportEventMarket>
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
 
-        [Required]
-        public int Number { get; set; }
+        [Required] public int Number { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        [Required] public string Name { get; set; }
 
-        [Required]
-        public bool IsClosed { get; set; }
+        [Required] public bool IsClosed { get; set; }
 
-        [Required]
-        public SportEvent Event { get; set; }
-        
-        [Required]
-        public int EventId { get; set; }
+        [Required] public int EventId { get; set; }
 
-        [Required]
-        public IList<SportEventSelection> Selections { get; set; }
+        #region Navigation properties
+
+        [Required] public SportEvent Event { get; set; }
+
+        [Required] public IList<SportEventSelection> Selections { get; set; }
+
+        #endregion
 
         public override string ToString() =>
-            $"{Id}, {Number}, {Name}, {IsClosed}, {Selections.Count}";
-        
-        protected bool Equals(SportEventMarket other)
+            $"{Id}, {Number}, {Name}, {IsClosed}, {Selections?.Count}";
+
+        #region Equality members
+
+        public bool Equals(SportEventMarket other)
         {
             return Id == other.Id &&
                    Number == other.Number &&
                    string.Equals(Name,
                        other.Name) &&
                    IsClosed == other.IsClosed &&
-                   Equals(Event,
-                       other.Event) &&
                    EventId == other.EventId;
         }
 
@@ -57,7 +55,6 @@ namespace BettingSystem.Models
                 hashCode = (hashCode * 397) ^ Number;
                 hashCode = (hashCode * 397) ^ (Name != null ? Name.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ IsClosed.GetHashCode();
-                hashCode = (hashCode * 397) ^ (Event != null ? Event.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ EventId;
                 return hashCode;
             }
@@ -72,5 +69,7 @@ namespace BettingSystem.Models
         {
             return !Equals(left, right);
         }
+
+        #endregion
     }
 }
